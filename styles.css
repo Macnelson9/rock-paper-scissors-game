@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
 *,
 *::before,
@@ -7,29 +7,96 @@
 }
 
 body {
-  font-family: "Press Start 2P", sans-serif;
+  font-family: 'Press Start 2P', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 50px auto;
+  margin: 70px auto;
   background-color: blueviolet;
+}
+
+.body-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
 }
 
 .body-container h1 {
   font-size: 1.5rem;
-  /* animation: slider 0.5s infinite; */
+  animation: bounce 3s ease infinite;
 }
 
-/* @keyframes slider {
-  0% {
-    transform: translateX(0);
-  }
+.buttons-container {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
 
-  50% {
-    transform: translateX(-50);
-  }
+#rock,
+#paper,
+#scissors {
+  background-color: red;
+  border-radius: 5px;
+  width: 2.7rem;
+  height: 1.8rem;
+}
 
+#paper {
+  background-color: green;
+}
+
+#scissors {
+  background-color: blue;
+}
+
+.scores-container {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  gap: 35px;
+}
+
+#user-score,
+#computer-score {
+  font-size: 1.3rem;
+}
+
+#rock:hover,
+#paper:hover,
+#scissors:hover {
+  transform: translateY(-5px);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
   100% {
-    transform: translateX(-100);
+    transform: translateY(0);
   }
-} */
+
+  40% {
+    transform: translateY(-30px);
+  }
+
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
