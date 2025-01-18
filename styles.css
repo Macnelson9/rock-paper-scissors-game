@@ -24,8 +24,17 @@ body {
 }
 
 .body-container h1 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   animation: bounce 3s ease infinite;
+}
+
+.reset {
+  border-radius: 8px;
+  background-color: grey;
+  color: whitesmoke;
+  width: 8rem;
+  height: 2.5rem;
+  cursor: pointer;
 }
 
 .buttons-container {
@@ -39,10 +48,11 @@ body {
 #rock,
 #paper,
 #scissors {
+  cursor: pointer;
   background-color: red;
   border-radius: 5px;
-  width: 2.7rem;
-  height: 1.8rem;
+  width: 4rem;
+  height: 1.9rem;
 }
 
 #paper {
@@ -70,6 +80,11 @@ body {
 #paper:hover,
 #scissors:hover {
   transform: translateY(-5px);
+}
+
+#winner {
+  font-size: 1.3rem;
+  animation: appear 3s ease infinite;
 }
 
 /* Animations */
