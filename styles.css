@@ -78,13 +78,29 @@ body {
 
 #rock:hover,
 #paper:hover,
-#scissors:hover {
+#scissors:hover,
+.reset:hover {
   transform: translateY(-5px);
 }
 
 #winner {
   font-size: 1.3rem;
   animation: appear 3s ease infinite;
+}
+
+.history-container {
+  background: rgba(0, 0, 0, 0.5);
+  color: whitesmoke;
+  padding: 23px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* Media queries */
+@media (max-width: 320px) {
+  .body-container h1 {
+    font-size: 1.45rem;
+  }
 }
 
 /* Animations */
