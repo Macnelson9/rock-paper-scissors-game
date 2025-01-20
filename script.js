@@ -20,32 +20,46 @@ const resetFunction = function () {
   userScoreEl.textContent = '0';
   computerScoreEl.textContent = '0';
   winnerEl.textContent = '';
+  clearHistory();
 };
 
 // Function to update history
-// const updateHistory = function (userPoints, cpuPoints) {
-//   const totalPoints = {
-//     userPoints: userPoints,
-//     cpuPoints: cpuPoints,
-//   };
+const updateHistory = function (userPoints, cpuPoints) {
+  if (userPoints < 10 && cpuPoints < 10) {
+    return; // Do nothing if neither player has reached 10 points
+  } else {
+    const finalScores = {
+      userPoints: userPoints,
+      cpuPoints: cpuPoints,
+    };
 
-//   const historyDetails = document.querySelector('.history-container');
-//   const history = JSON.parse(localStorage.getItem('playHistory')) || [];
+    const historyDetails = document.querySelector('.history-container');
+    const history = JSON.parse(localStorage.getItem('playHistory')) || [];
 
-//   history.push(userPoints, cpuPoints);
+    history.push(finalScores);
+    console.log(history);
+    console.log(userPoints, cpuPoints);
 
-//   localStorage.setItem('playHistory', JSON.stringify(history));
+    localStorage.setItem('playHistory', JSON.stringify(history));
 
-//   let historyHTML = '';
+    let historyHTML = '';
 
-//   history.forEach((totalPoints, index) => {
-//     historyHTML += `<p>${index + 1}. ${
-//       totalPoints.userPoints > cpuPoints ? 'You won!' : 'You lost!'
-//     } ${userPoints} - ${cpuPoints}</p>`;
-//   });
+    history.forEach((totalPoints, index) => {
+      historyHTML += `<p>${index + 1}. ${
+        totalPoints.userPoints > totalPoints.cpuPoints
+          ? 'You won!'
+          : 'You lost!'
+      } ${totalPoints.userPoints} - ${totalPoints.cpuPoints}</p>`;
+    });
 
-//   historyDetails.innerHTML = historyHTML;
-// };
+    historyDetails.innerHTML = historyHTML;
+  }
+};
+
+const clearHistory = function () {
+  localStorage.removeItem('playHistory');
+  document.querySelector('.history-container').innerHTML = '';
+};
 
 // Handles clicks for each button move
 buttons.forEach(button =>
@@ -100,10 +114,16 @@ const playRound = function (playerSelection, computerSelection) {
 const declareWinner = function (playerScore, computerScore) {
   if (playerScore >= 10 && computerScore < 10) {
     winnerEl.textContent = `Congratulations!! You win!!! 🏆🏆`;
+
+    updateHistory(playerScore, computerScore);
   } else if (playerScore === 10 && computerScore === 10) {
     winnerEl.textContent = `It ends in a Tie! Play Again?? 🎮`;
+
+    updateHistory(playerScore, computerScore);
   } else if (playerScore < 10 && computerScore >= 10) {
     winnerEl.textContent = `Sorry!! You lose!! Play Again?? 😝🕹`;
+
+    updateHistory(playerScore, computerScore);
   }
 };
 
